@@ -104,6 +104,7 @@ module Mousetrap
       )
 
       raise response['error'] if response['error']
+      raise response['customers']['errors']['error'] if response['customers'] && response['customers']['errors']
     end
 
 
