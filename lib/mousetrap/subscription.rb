@@ -15,6 +15,7 @@ module Mousetrap
       :billing_state,
       :billing_zip_code,
       :plan,
+      :coupon_code,
 
       :customer_code # belongs to customer
 
@@ -70,6 +71,7 @@ module Mousetrap
         :billing_city                 => billing_city,
         :billing_state                => billing_state,
         :billing_zip_code             => billing_zip_code,
+        :coupon_code                  => coupon_code
       }
     end
 
@@ -142,7 +144,8 @@ module Mousetrap
         :ccAddress    => attributes[:billing_address],
         :ccCity       => attributes[:billing_city],
         :ccState      => attributes[:billing_state],
-        :ccZip        => attributes[:billing_zip_code]
+        :ccZip        => attributes[:billing_zip_code],
+        :couponCode  => attributes[:coupon_code]
       }
     end
 
