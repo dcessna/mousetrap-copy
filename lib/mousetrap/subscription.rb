@@ -145,7 +145,7 @@ module Mousetrap
         :ccCity       => attributes[:billing_city],
         :ccState      => attributes[:billing_state],
         :ccZip        => attributes[:billing_zip_code],
-        :couponCode  => attributes[:coupon_code]
+        :couponCode   => attributes[:coupon_code]
       }
     end
 
