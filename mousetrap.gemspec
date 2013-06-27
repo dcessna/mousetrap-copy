@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "lib/mousetrap/plan.rb",
      "lib/mousetrap/resource.rb",
      "lib/mousetrap/subscription.rb",
+     "lib/mousetrap/promotion.rb",
      "mousetrap.gemspec",
      "script/authenticate.rb",
      "script/cheddar_getter.example.yml",
