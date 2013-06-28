@@ -3,7 +3,14 @@ module Mousetrap
     attr_accessor \
       :id,
       :coupon_code,
-      :expiration_date
+      :expiration_date,
+      :discount,
+      :discount_type,
+      :months
+
+    def initialize(hash = {})
+      super(self.class.attributes_from_api(hash))
+    end
 
     def self.all
       response = get_resources plural_resource_name
@@ -25,8 +32,10 @@ module Mousetrap
       {
           :id              => attributes['id'],
           :coupon_code     => attributes['coupons']['coupon']['code'],
-          :expiration_date => attributes['coupons']['coupon']['expirationDatetime']
-
+          :expiration_date => attributes['coupons']['coupon']['expirationDatetime'],
+          :discount_type   => attributes['incentives']['incentive']['type'],
+          :discount        => attributes['incentives']['incentive']['percentage'],
+          :months          => attributes['incentives']['incentive']['months']
       }
     end
 

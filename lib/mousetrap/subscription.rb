@@ -28,7 +28,8 @@ module Mousetrap
       :credit_card_last_four_digits,
       :credit_card_type,
       :invoices,
-      :items
+      :items,
+      :promotions
 
     def self.[](code)
       raise_api_unsupported_error
@@ -54,6 +55,18 @@ module Mousetrap
       end
 
       Invoice.new(invoice_attributes)
+    end
+
+    def promotion
+      if promotions
+        promotion_attributes = if promotions['promotion'].kind_of?(Array)
+          promotions['promotion'][0]
+        else
+          promotions['promotion']
+        end
+
+        Promotion.new(promotion_attributes)
+      end
     end
 
     def attributes
@@ -121,7 +134,8 @@ module Mousetrap
       :credit_card_type,
       :credit_card_verification_code,
       :items,
-      :invoices
+      :invoices,
+      :promotions
 
     def self.plural_resource_name
       'subscriptions'
@@ -158,7 +172,9 @@ module Mousetrap
         :credit_card_last_four_digits => attributes['ccLastFour'],
         :credit_card_type             => attributes['ccType'],
         :invoices                     => attributes['invoices'],
-        :items                        => attributes['items']
+        :items                        => attributes['items'],
+        :promotions                   => attributes['promotions']
+
       }
     end
   end
