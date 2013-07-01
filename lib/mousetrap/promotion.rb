@@ -29,14 +29,17 @@ module Mousetrap
     end
 
     def self.attributes_from_api(attributes)
-      {
-          :id              => attributes['id'],
-          :coupon_code     => attributes['coupons']['coupon']['code'],
-          :expiration_date => attributes['coupons']['coupon']['expirationDatetime'],
-          :discount_type   => attributes['incentives']['incentive']['type'],
-          :discount        => attributes['incentives']['incentive']['percentage'],
-          :months          => attributes['incentives']['incentive']['months']
-      }
+      attrs = {:id => attributes['id']}
+      if attributes['coupons']
+        attrs[:coupon_code] = attributes['coupons']['coupon']['code']
+        attrs[:expiration_date] = attributes['coupons']['coupon']['expirationDatetime']
+      end
+      if attributes['incentives']
+        attrs[:discount_type] = attributes['incentives']['incentive']['type']
+        attrs[:discount] = attributes['incentives']['incentive']['percentage']
+        attrs[:months] = attributes['incentives']['incentive']['months']
+      end
+      attrs
     end
 
   end
